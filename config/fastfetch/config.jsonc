@@ -1,0 +1,37 @@
+{
+    "logo": {
+        "source": "~/.config/fastfetch/art.txt",
+        "type": "file",
+        "color": { "1": "cyan", "2": "cyan" },
+        "padding": { "top": 1, "left": 2, "right": 3 }
+    },
+    "display": {
+        "separator": " → ",
+        "color": { "keys": "cyan", "title": "cyan" }
+    },
+    "modules": [
+        "title",
+        "separator",
+        "os",
+        "kernel",
+        "packages",
+        "shell",
+        "wm",
+        "terminal",
+        "cpu",
+        "gpu",
+        "memory",
+        "swap",
+        "disk",
+        "battery",
+        "uptime",
+        "locale",
+        "separator",
+        { "type": "display", "key": "Display" },
+        { "type": "vulkan", "key": "Vulkan" },
+        { "type": "opengl", "key": "OpenGL" },
+        "separator",
+        { "type": "colors", "paddingLeft": 0 }
+    ]
+}
+

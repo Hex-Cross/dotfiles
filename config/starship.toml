@@ -1,0 +1,44 @@
+
+format = """$directory$git_branch$git_status$nodejs$rust$python$docker_context$cmd_duration$line_break$character"""
+
+[directory]
+style = "bold #1793d1"
+truncation_length = 3
+truncate_to_repo = true
+
+[git_branch]
+format = " [$branch]($style) "
+style = "#89dceb"
+
+[git_status]
+format = "[$all_status$ahead_behind]($style) "
+style = "#f38ba8"
+
+[nodejs]
+format = "[$symbol$version]($style) "
+symbol = " "
+style = "#a6e3a1"
+
+[rust]
+format = "[$symbol$version]($style) "
+symbol = " "
+style = "#fab387"
+
+[python]
+format = "[$symbol$version]($style) "
+symbol = " "
+style = "#f9e2af"
+
+[docker_context]
+format = "[$symbol$context]($style) "
+symbol = " "
+style = "#89b4fa"
+
+[cmd_duration]
+min_time = 2000
+format = "[$duration]($style) "
+style = "#6c7086"
+
+[character]
+success_symbol = "[❯](bold #1793d1)"
+error_symbol = "[❯](bold #f38ba8)"

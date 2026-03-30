@@ -1,0 +1,140 @@
+// ── Reset & Font ──
+* { all: unset; font-family: "JetBrainsMono Nerd Font"; font-size: 13px; }
+
+// ── Colors ──
+$bg:       #1e1e2e;
+$surface:  #313244;
+$overlay:  #45475a;
+$text:     #cdd6f4;
+$subtext:  #a6adc8;
+$blue:     #1793d1;
+$green:    #a6e3a1;
+$red:      #f38ba8;
+
+// ── Main Container ──
+.main-container {
+  background-color: $bg;
+  border: 2px solid $blue;
+  border-radius: 20px;
+  padding: 20px;
+  color: $text;
+}
+
+// ── Header ──
+.header { margin-bottom: 15px; }
+.title { font-size: 15px; font-weight: bold; color: $blue; }
+.close-btn { color: $red; font-size: 18px; padding: 2px 5px; }
+
+// ── Slider Pills ──
+.slider-pill {
+  background-color: $surface;
+  padding: 12px 15px;
+  border-radius: 15px;
+  margin-bottom: 10px;
+}
+
+.icon { font-size: 18px; color: $blue; margin-right: 12px; }
+.label { font-size: 11px; color: $subtext; }
+
+scale trough {
+  background-color: $overlay;
+  border-radius: 999px;
+  min-height: 8px;
+  margin-top: 8px;
+}
+
+scale highlight {
+  background-color: $blue;
+  border-radius: 999px;
+}
+
+scale slider {
+  background-color: $text;
+  border-radius: 50%;
+  min-width: 16px;
+  min-height: 16px;
+}
+
+// ── Toggle Pills ──
+.toggles-row { margin-bottom: 10px; }
+
+.toggle-pill {
+  background-color: $surface;
+  border-radius: 15px;
+  padding: 15px 10px;
+  margin: 0 4px;
+  min-width: 130px;
+  transition: all 0.2s ease;
+
+  &.active {
+    background-color: $blue;
+    .toggle-icon, .toggle-label, .toggle-status { color: #ffffff; }
+  }
+}
+
+.toggle-icon { font-size: 22px; color: $blue; margin-bottom: 5px; }
+.toggle-label { font-size: 11px; color: $subtext; margin-bottom: 2px; }
+.toggle-status { font-size: 10px; color: $subtext; font-weight: bold; }
+
+// ── Section Title ──
+.section-title {
+  font-size: 10px;
+  color: $blue;
+  margin: 5px 0 8px 5px;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+// ── Connection Boxes ──
+.conn-box {
+  background-color: $surface;
+  border-radius: 12px;
+  padding: 12px 15px;
+  margin-bottom: 8px;
+}
+
+.conn-row {
+  margin-bottom: 5px;
+}
+
+.conn-row-single {
+  background-color: $surface;
+  border-radius: 12px;
+  padding: 12px 15px;
+  margin-bottom: 8px;
+}
+
+.conn-label { font-size: 13px; color: $text; }
+
+.conn-sub {
+  font-size: 10px;
+  color: $subtext;
+  margin-top: 4px;
+  margin-left: 30px;
+}
+
+// ── WiFi List ──
+.wifi-list { margin-top: 6px; }
+
+.wifi-item {
+  padding: 8px 12px;
+  border-radius: 8px;
+  margin: 2px 0;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background-color: $blue;
+    .wifi-ssid, .wifi-signal { color: #ffffff; }
+  }
+}
+
+.wifi-ssid { font-size: 12px; color: $text; }
+.wifi-signal { font-size: 11px; color: $subtext; }
+
+// ── Hints ──
+.hint {
+  font-size: 8px;
+  color: $overlay;
+  margin-top: 4px;
+  font-style: italic;
+}

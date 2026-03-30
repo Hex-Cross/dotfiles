@@ -1,0 +1,173 @@
+button {
+    background-color: transparent;
+    background-image: none;
+    border: none;
+    box-shadow: none;
+}
+.background {
+    background-color: rgba(17, 17, 27, 0.5);
+    color: #cdd6f4;
+    font-family: "JetBrainsMono Nerd Font";
+    font-size: 12px;
+}
+.update-pill {
+    background-color: rgba(24, 24, 37, 0.8);
+    border-radius: 999px;
+    padding: 0 10px;
+    margin: 4px 3px;
+    color: #1793d1;
+    font-size: 11px;
+}
+.clock {
+    background-color: transparent;
+    border-radius: 999px;
+    padding: 0;
+    margin: 4px 3px;
+    font-size: 11px;
+    color: #1793d1;
+}
+.clock button {
+    background-color: rgba(24, 24, 37, 0.8);
+    background-image: none;
+    border-radius: 999px;
+    padding: 0 10px;
+    color: #1793d1;
+    border: none;
+}
+.clock button label {
+    color: #1793d1;
+    background-color: transparent;
+    background-image: none;
+}
+popover {
+    background-color: rgba(17, 17, 27, 0.9);
+    border: 2px solid #313244;
+    border-radius: 16px;
+    padding: 0;
+}
+popover contents {
+    background-color: transparent;
+    border: none;
+    padding: 12px;
+}
+popover arrow {
+    background-color: transparent;
+    border: none;
+}
+.popup-clock {
+    background-color: rgba(17, 17, 27, 0.9);
+    border-radius: 16px;
+    border: 2px solid #313244;
+    padding: 12px;
+    color: #cdd6f4;
+}
+.popup-clock frame,
+.popup-clock frame border,
+.popup-clock decoration {
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+}
+calendar {
+    background-color: rgba(17, 17, 27, 0.9);
+    color: #cdd6f4;
+}
+calendar:selected {
+    background-color: #1793d1;
+    color: #ffffff;
+}
+calendar header {
+    color: #1793d1;
+    background-color: transparent;
+}
+calendar header button {
+    color: #1793d1;
+    background-color: #313244;
+}
+.workspaces button {
+    background-color: #45475a;
+    background-image: none;
+    border-radius: 999px;
+    border: none;
+    padding: 0;
+    margin: 9px 3px;
+    min-width: 8px;
+    min-height: 0;
+    -gtk-icon-size: 0;
+}
+.workspaces button label {
+    font-size: 0;
+    padding: 0;
+    margin: 0;
+    min-width: 0;
+    min-height: 0;
+    opacity: 0;
+}
+.workspaces button.focused {
+    background-color: #1793d1;
+}
+.network-icon {
+    background-color: rgba(24, 24, 37, 0.8);
+    border-radius: 999px;
+    padding: 0 10px;
+    margin: 4px 3px;
+    color: #1793d1;
+    font-size: 10px;
+    letter-spacing: 1px;
+}
+@keyframes blink-red {
+    0%, 100% { background-color: #f38ba8; color: #11111b; }
+    50% { background-color: #45475a; color: #f38ba8; }
+}
+#battery {
+    border-radius: 999px;
+    margin: 4px 3px;
+    font-weight: bold;
+    border: none;
+    min-width: 100px;
+    font-size: 11px;
+    padding: 0 12px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    background-color: #1793d1;
+    color: #ffffff;
+}
+#battery.charging {
+    background-color: #a6e3a1;
+    background-image: none;
+    color: #11111b;
+    animation: none;
+}
+#battery.full-eco {
+    background-color: #89dceb;
+    background-image: none;
+    color: #11111b;
+    animation: none;
+}
+#battery.eco {
+    background-color: #89dceb;
+    background-image: none;
+    color: #11111b;
+    animation: none;
+}
+#battery.critical {
+    background-image: none;
+    animation: blink-red 1s infinite;
+}
+#battery.normal {
+    background-color: #1793d1;
+    background-image: none;
+    color: #ffffff;
+    animation: none;
+}
+.power-btn {
+    background-color: rgba(24, 24, 37, 0.8);
+    color: #1793d1;
+    border-radius: 999px;
+    padding: 0 8px;
+    margin: 4px 3px;
+    font-size: 12px;
+}
+.power-btn:hover {
+    background-color: #1793d1;
+    color: #11111b;
+}

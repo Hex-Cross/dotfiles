@@ -1,0 +1,42 @@
+{
+  "position": "top",
+  "height": 28,
+  "name": "my-test-bar",
+  "start": [
+    {
+      "type": "script",
+      "mode": "poll",
+      "interval": 60000,
+      "cmd": "bash ~/.config/ironbar/scripts/update_check.sh",
+      "class": "update-pill",
+      "on_click_left": "bash ~/.config/ironbar/scripts/update_clean.sh"
+    }
+  ],
+  "center": [ { "type": "workspaces" } ],
+  "end": [
+    { "type": "clock", "format": "%H:%M", "class": "clock" },
+    {
+      "type": "script",
+      "mode": "poll",
+      "interval": 10000,
+      "cmd": "bash ~/.config/ironbar/scripts/network_icon.sh",
+      "class": "network-icon",
+      "on_click_left": "bash ~/.config/ironbar/scripts/toggle_cc.sh"
+    },
+    {
+      "type": "script",
+      "mode": "poll",
+      "interval": 2000,
+      "cmd": "bash ~/.config/ironbar/scripts/battery_status.sh",
+      "class": "battery-pill",
+      "name": "battery",
+      "on_click_left": "bash ~/.config/ironbar/scripts/battery_click.sh"
+    },
+    {
+      "type": "label",
+      "label": "⏻",
+      "class": "power-btn",
+      "on_click_left": "bash ~/.config/ironbar/scripts/power_menu.sh"
+    }
+  ]
+}

@@ -1,0 +1,2 @@
+GRUB_CMDLINE_LINUX_DEFAULT="loglevel=3 quiet nowatchdog nmi_watchdog=0 processor.ignore_ppc=1 amd_pstate=active amdgpu.dc=1 amdgpu.ppfeaturemask=0xffffffff"
+GRUB_CMDLINE_LINUX=""

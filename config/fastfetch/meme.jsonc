@@ -1,0 +1,28 @@
+{
+    "logo": {
+        "source": "~/.config/fastfetch/art.txt",
+        "type": "file",
+        "color": { "1": "cyan", "2": "cyan" },
+        "padding": { "top": 1, "left": 2, "right": 3 }
+    },
+    "display": {
+        "separator": " → ",
+        "color": { "keys": "cyan", "title": "cyan" }
+    },
+    "modules": [
+        { "type": "title", "format": "Forever Beginner" },
+        "separator",
+        { "type": "os", "key": "Distro", "format": "I dont know what i am doing" },
+        { "type": "kernel", "key": "Brain", "format": "with IQ under 5" },
+        { "type": "uptime", "key": "Alive", "format": "(send help)" },
+        { "type": "shell", "key": "Weapon", "format": "Water Gun" },
+        { "type": "wm", "key": "Job", "format": "Still Looking" },
+        { "type": "terminal", "key": "Skill", "format": "Being Burden" },
+        { "type": "cpu", "key": "Master", "format": "Of Nothing" },
+        { "type": "gpu", "key": "Hobby", "format": "Breathing" },
+        { "type": "memory", "key": "Memory", "format": "12MB" },
+        { "type": "battery", "key": "Power", "format": "Always Turn Off" },
+        "separator",
+        { "type": "colors", "paddingLeft": 0 }
+    ]
+}

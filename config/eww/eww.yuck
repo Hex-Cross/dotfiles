@@ -1,0 +1,93 @@
+;; ── Polls ──
+(defpoll volume      :interval "2s" "pamixer --get-volume 2>/dev/null || echo 0")
+(defpoll brightness  :interval "2s" "brightnessctl -m | cut -d, -f4 | sed 's/%//'")
+(defpoll wifi_name   :interval "10s" "nmcli -t -f NAME,TYPE con show --active | grep wireless | cut -d: -f1 | head -1 || echo ''")
+(defpoll wifi_signal :interval "10s" "nmcli -t -f SIGNAL,ACTIVE dev wifi | grep yes | cut -d: -f1 || echo 0")
+(defpoll wifi_list   :interval "15s" :initial "[]" "bash ~/.config/eww/scripts/get_wifi.sh")
+(defpoll lan_status  :interval "10s" "nmcli -t -f TYPE,STATE dev | grep ethernet | grep -q connected && echo 'Connected' || echo 'Disconnected'")
+(defpoll bt_status   :interval "5s" "bluetoothctl show | grep -q 'Powered: yes' && echo 'ON' || echo 'OFF'")
+(defpoll vpn_status  :interval "5s" "nmcli -t -f NAME,TYPE con show --active | grep -q wireguard && echo 'ON' || echo 'OFF'")
+
+;; ── Main Widget ──
+(defwidget control_center []
+  (box :orientation "v" :space-evenly false :class "main-container"
+
+    ;; Header
+    (box :orientation "h" :space-evenly false :class "header"
+      (label :text "Control Center" :class "title" :hexpand true :halign "start")
+      (button :onclick "eww close control_center closer" :class "close-btn" ""))
+
+    ;; Volume
+    (box :orientation "v" :space-evenly false :class "slider-pill"
+      (box :orientation "h" :space-evenly false
+        (label :text "󰕾" :class "icon")
+        (label :text "Volume" :class "label" :hexpand true :halign "start")
+        (label :text "${volume}%" :class "label"))
+      (scale :min 0 :max 101 :value volume :onchange "pamixer --set-volume {}"))
+
+    ;; Brightness
+    (box :orientation "v" :space-evenly false :class "slider-pill"
+      (box :orientation "h" :space-evenly false
+        (label :text "󰃠" :class "icon")
+        (label :text "Brightness" :class "label" :hexpand true :halign "start")
+        (label :text "${brightness}%" :class "label"))
+      (scale :min 0 :max 101 :value brightness :onchange "brightnessctl s {}%"))
+
+    ;; Toggles Row: Bluetooth + VPN
+    (box :orientation "h" :space-evenly true :class "toggles-row"
+
+      ;; Bluetooth: left=toggle power, right=manage paired devices
+      (eventbox :onclick "bash ~/.config/eww/scripts/bt_toggle.sh &"
+                :onrightclick "bash ~/.config/eww/scripts/bt_manage.sh &"
+        (box :class "toggle-pill ${bt_status == 'ON' ? 'active' : ''}"
+             :orientation "v" :space-evenly false :halign "center"
+          (label :text "󰂯" :class "toggle-icon")
+          (label :text "Bluetooth" :class "toggle-label")
+          (label :text bt_status :class "toggle-status")))
+
+      ;; VPN: left=toggle, right=edit wireguard settings
+      (eventbox :onclick "bash ~/.config/eww/scripts/vpn_toggle.sh &"
+                :onrightclick "bash ~/.config/eww/scripts/edit_conn.sh vpn &"
+        (box :class "toggle-pill ${vpn_status == 'ON' ? 'active' : ''}"
+             :orientation "v" :space-evenly false :halign "center"
+          (label :text "󰦝" :class "toggle-icon")
+          (label :text "VPN" :class "toggle-label")
+          (label :text vpn_status :class "toggle-status"))))
+
+    ;; Connections Section
+    (label :text "CONNECTIONS" :class "section-title" :halign "start")
+
+    ;; WiFi current + list
+    (box :orientation "v" :space-evenly false :class "conn-box"
+      ;; Current WiFi: right-click to edit (DNS, gateway, etc)
+      (eventbox :onrightclick "bash ~/.config/eww/scripts/wifi_click.sh edit_current &"
+        (box :orientation "h" :space-evenly false :class "conn-row"
+          (label :text "󰤨" :class "icon")
+          (label :text {wifi_name != "" ? wifi_name : "Not Connected"} :class "conn-label" :hexpand true :halign "start")
+          (label :text {wifi_name != "" ? "${wifi_signal}%" : ""} :class "label")))
+
+      ;; Available networks: left=connect, right=edit
+      (box :orientation "v" :space-evenly false :class "wifi-list"
+        (for entry in wifi_list
+          (eventbox :onclick "bash ~/.config/eww/scripts/wifi_click.sh connect \"${entry.ssid}\" &"
+                    :onrightclick "bash ~/.config/eww/scripts/wifi_click.sh edit \"${entry.ssid}\" &"
+            (box :orientation "h" :space-evenly false :class "wifi-item"
+              (label :text {entry.ssid} :class "wifi-ssid" :hexpand true :halign "start")
+              (label :text "${entry.signal}%" :class "wifi-signal"))))))
+
+    ;; LAN: right-click to edit (DNS, etc)
+    (eventbox :onrightclick "bash ~/.config/eww/scripts/edit_conn.sh lan &"
+      (box :orientation "h" :space-evenly false :class "conn-row-single"
+        (label :text "󰈀" :class "icon")
+        (label :text "Ethernet" :class "conn-label" :hexpand true :halign "start")
+        (label :text lan_status :class "label")))))
+
+;; ── Closer overlay ──
+(defwindow closer :monitor 0 :stacking "fg" :focusable false
+  :geometry (geometry :width "100%" :height "100%")
+  (eventbox :onclick "eww close control_center closer"))
+
+;; ── Control Center Window ──
+(defwindow control_center :monitor 0 :stacking "fg"
+  :geometry (geometry :x "10px" :y "55px" :width "320px" :anchor "top right")
+  (control_center))

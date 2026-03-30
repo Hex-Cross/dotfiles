@@ -1,0 +1,42 @@
+# --- Path ---
+export PATH="$HOME/.local/bin:$PATH"
+
+# --- Editor ---
+export EDITOR="nvim"
+export VISUAL="nvim"
+alias vi='nvim'
+alias vim='nvim'
+
+# --- History ---
+HISTFILE=~/.zsh_history
+HISTSIZE=5000
+SAVEHIST=5000
+setopt HIST_IGNORE_DUPS
+setopt HIST_IGNORE_SPACE
+setopt SHARE_HISTORY
+
+# --- Completions ---
+autoload -Uz compinit && compinit
+zstyle ':completion:*' menu select
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
+
+# --- Key bindings ---
+bindkey '^[[A' history-search-backward
+bindkey '^[[B' history-search-forward
+
+# --- Aliases ---
+alias ls='ls --color=auto'
+alias ll='ls -la'
+alias fetch="command fastfetch -c ~/.config/fastfetch/meme.jsonc"
+alias fetch-all="command fastfetch -c ~/.config/fastfetch/config.jsonc"
+alias claude='claude --verbose --dangerously-skip-permissions'
+alias workon="sudo systemctl start docker.socket && minikube start"
+alias workoff="minikube stop && sudo systemctl stop docker.socket docker.service containerd"
+alias maintain='yay -Syu && sudo pacman -Rs $(pacman -Qdtq) 2>/dev/null; paccache -r; systemctl --failed'
+alias cleanup='sudo journalctl --vacuum-time=7d && yay -Scc --noconfirm'
+
+# --- Fastfetch on new terminal ---
+fetch
+
+# --- Starship prompt (keep last) ---
+eval "$(starship init zsh)"
